@@ -1,5 +1,6 @@
 package comskcc.caremoa.model.entity;
 
+import comskcc.caremoa.model.LikeType;
 import comskcc.caremoa.model.ReviewType;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -10,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -20,27 +20,26 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "\"care_review\"", indexes = {
-        @Index(name = "review_id_idx", columnList = "id")
-})
+@Table(name="\"care_review_contents\"")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE \"care_review\" SET deleted_at = NOW() where id=?")
+@SQLDelete(sql = "UPDATE \"care_review_contents\" SET deleted_at = NOW() where id=?")
 @Where(clause = "deleted_at is NULL")
-public class CareReviewEntity {
+public class CareReviewContentsEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="cont_id")
-    private Long contId;
-    
-    @Column(name="review_type")
-    @Enumerated(EnumType.STRING)
-    private ReviewType reviewType;
+    @Column(name = "review_id")
+    private Long reviewId;
 
-    @Column(name="member_id")
-    private Long memberId;
+    @Column(name = "contents")
+    private String contents;
+
+    @Column(name = "like_type")
+    @Enumerated(EnumType.STRING)
+    private LikeType likeType;
 
     @Column(name ="registered_at")
     private Timestamp registeredAt;
@@ -61,11 +60,11 @@ public class CareReviewEntity {
         this.updatedAt = Timestamp.from(Instant.now());
     }
 
-    public static CareReviewEntity of(Long contId, Long memberId, ReviewType reviewType) {
-        CareReviewEntity entity = new CareReviewEntity();
-        entity.setContId(contId);
-        entity.setMemberId(memberId);
-        entity.setReviewType(reviewType);
+    public static CareReviewContentsEntity of(Long reviewId, String contents, LikeType likeType) {
+        CareReviewContentsEntity entity = new CareReviewContentsEntity();
+        entity.setReviewId(reviewId);
+        entity.setContents(contents);
+        entity.setLikeType(likeType);
 
         return entity;
     }

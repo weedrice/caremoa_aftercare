@@ -1,6 +1,7 @@
 package comskcc.caremoa.service;
 
 import comskcc.caremoa.model.CareReview;
+import comskcc.caremoa.model.ReviewType;
 import comskcc.caremoa.model.entity.CareReviewEntity;
 import comskcc.caremoa.repository.CareReviewEntityRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class CareReviewService {
     }
 
     @Transactional
-    public void create(Long contId, Long memberId) {
-        careReviewRepository.save(CareReviewEntity.of(contId, memberId));
+    public void create(Long contId, Long memberId, ReviewType reviewType) {
+        careReviewRepository.save(CareReviewEntity.of(contId, memberId, reviewType));
     }
 }
