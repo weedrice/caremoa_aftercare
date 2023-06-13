@@ -26,7 +26,7 @@ public class CareReviewController {
 
     @PostMapping
     public Response<Void> post(@RequestBody CareReviewCreateRequest request) {
-        careReviewService.create(request.getContId(), request.getMemberId(), request.getReviewType());
+        careReviewService.create(request.getContId(), request.getMemberId(), null);
         return Response.success();
     }
 
