@@ -41,7 +41,7 @@ public class CareReviewContentsService {
     }
 
     private CareReviewEntity getCareReviewEntityOrException(Long reviewId) {
-        return careReviewEntityRepository.findByReviewId(reviewId).orElseThrow(() ->
+        return careReviewEntityRepository.findById(reviewId).orElseThrow(() ->
                 new CareReviewException(ErrorCode.REVIEW_NOT_FOUND, String.format("%s not founded", reviewId))
         );
     }

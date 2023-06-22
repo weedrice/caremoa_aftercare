@@ -32,7 +32,7 @@ public class ClaimEntity {
     private Long id;
 
     @Column(name = "review_id")
-    private Long reivewId;
+    private Long reviewId;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -63,7 +63,7 @@ public class ClaimEntity {
 
     public static ClaimEntity of(Long reviewId, ClaimStatus claimStatus, ClaimType claimType) {
         ClaimEntity claimEntity = new ClaimEntity();
-        claimEntity.setReivewId(reviewId);
+        claimEntity.setReviewId(reviewId);
         claimEntity.setClaimStatus(claimStatus);
         claimEntity.setClaimType(claimType);
 

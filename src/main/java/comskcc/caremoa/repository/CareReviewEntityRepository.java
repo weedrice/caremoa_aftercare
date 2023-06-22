@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CareReviewEntityRepository extends JpaRepository<CareReviewEntity, Integer> {
     Page<CareReviewEntity> findAllByMemberId(Long memberId, Pageable pageable);
-    Optional<CareReviewEntity> findByReviewId(Long reviewId);
+    Optional<CareReviewEntity> findById(Long reviewId);
 }

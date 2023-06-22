@@ -6,7 +6,6 @@ import comskcc.caremoa.exception.ErrorCode;
 import comskcc.caremoa.model.Claim;
 import comskcc.caremoa.model.ClaimStatus;
 import comskcc.caremoa.model.ReviewType;
-import comskcc.caremoa.model.entity.CareReviewContentsEntity;
 import comskcc.caremoa.model.entity.CareReviewEntity;
 import comskcc.caremoa.model.entity.ClaimEntity;
 import comskcc.caremoa.repository.CareReviewEntityRepository;
@@ -30,7 +29,7 @@ public class ClaimService {
     }
 
     public void create(Long reviewId, ClaimCreateRequest claimCreateRequest) {
-        ClaimEntity claimEntity = getClaimByReviewId(reviewId);
+        // ClaimEntity claimEntity = getClaimByReviewId(reviewId);
         CareReviewEntity careReviewEntity = getCareReviewByReviewId(reviewId);
 
         claimRepository.save(ClaimEntity.of(reviewId, ClaimStatus.APPLY, claimCreateRequest.getClaimType()));
@@ -39,7 +38,7 @@ public class ClaimService {
     }
 
     private CareReviewEntity getCareReviewByReviewId(Long reviewId) {
-        return careReviewEntityRepository.findByReviewId(reviewId).orElseThrow(() ->
+        return careReviewEntityRepository.findById(reviewId).orElseThrow(() ->
                 new CareReviewException(ErrorCode.REVIEW_NOT_FOUND, String.format("%s not founded", reviewId)));
     }
 

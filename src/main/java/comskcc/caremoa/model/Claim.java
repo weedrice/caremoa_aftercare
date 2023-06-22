@@ -1,6 +1,5 @@
 package comskcc.caremoa.model;
 
-import comskcc.caremoa.model.entity.CareReviewContentsEntity;
 import comskcc.caremoa.model.entity.ClaimEntity;
 import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,7 @@ public class Claim {
     public static Claim fromEntity(ClaimEntity claimEntity) {
         return new Claim(
                 claimEntity.getId(),
-                claimEntity.getReivewId(),
+                claimEntity.getReviewId(),
                 claimEntity.getClaimStatus(),
                 claimEntity.getClaimType(),
                 claimEntity.getRegisteredAt(),
