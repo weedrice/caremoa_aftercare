@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: caremoa_aftercare
+  profiles:
+    active: default
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(1APaDwGt9xwZx9+p0p3aTTGlqjZjUxFXwTt68e1rux8o2zfPVvwTOVEIB7C03SMr/G36ZfXjVuWJs8WFudJHcyQhLNlhbyb6O4rTSEX8nC7if/Ra4Lv8NFQLzRWcxWYUWZ/tqJec4Bk=)
+    username: ENC(c+kcvDX8JFho6N8fAhzIiA==)
+    password: ENC(ap9tR83A72LOBzD/fnbSFA==)
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+server:
+  port: 8087
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+
+# Jasypt
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
