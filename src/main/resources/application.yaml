@@ -19,6 +19,12 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  config:
+    activate:
+      # Local
+      # on-profile: default
+      # Server
+      on-profile: docker
 
 server:
   port: 8087
