@@ -1,11 +1,9 @@
 spring:
   application:
     name: caremoa_aftercare
-  profiles:
-    active: default
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(1APaDwGt9xwZx9+p0p3aTTGlqjZjUxFXwTt68e1rux8o2zfPVvwTOVEIB7C03SMr/G36ZfXjVuWJs8WFudJHcyQhLNlhbyb6O4rTSEX8nC7if/Ra4Lv8NFQLzRWcxWYUWZ/tqJec4Bk=)
+    url: ENC(dBpe4U48smRTsugGzYA4NHxKDDlPsVrG/y6uE5XbHtXssFInRkWeeNoP0ufVMk1Q2rV9zOQ0/3AUL3Px2Ve05ccqQAdnbGp30Zg1K/jz/QtSSoX/wnW29jQTuY5CZRMTlNJDnzynr8Qxk8FLGtCNsuRKRq7R0PlBDiYN+V/spzHpbvjicZAxFjG/KL7PyAvw)
     username: ENC(c+kcvDX8JFho6N8fAhzIiA==)
     password: ENC(ap9tR83A72LOBzD/fnbSFA==)
   jpa:
@@ -22,9 +20,9 @@ spring:
   config:
     activate:
       # Local
-      # on-profile: default
+      on-profile: default
       # Server
-      on-profile: docker
+      # on-profile: docker
 
 server:
   port: 8087
