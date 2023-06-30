@@ -1,3 +1,76 @@
+springdoc:
+  api-docs:
+    path: /api-docs # spring boot 웹 애플리케이션의 api를 OpenAPI 3을 이용하여 json 형식화 한것의 경로
+  default-consumes-media-type: application/json # request media type 의 기본 값
+  default-produces-media-type: application/json # response media type 의 기본 값
+  swagger-ui: # 기본값 : 컨트롤러 내에서 정의한 api 메서드 순
+    enabled: true
+    operations-sorter: method # 태그 내 각 api의 정렬 기준
+    # alpha(알파벳 오름차순), method(http method 순)
+    tags-sorter: alpha
+    path: swagger-ui.html
+    disable-swagger-default-url: true
+    # json화 된 config파일 대신 파라미터를 이용하여 swagger-ui에 접근하도록 합니다.
+    # api-docs(/api-docs) 및 swagger-ui.configUrl(/api-docs/swagger-config)를 두번씩 호출하는 것을 방지합니다.
+    doc-expansion: none # 기본 값: list
+      # tag와 operation을 펼치는 방식에 대한 설정
+    # String=["list", "full", "none"]
+    # none으로 설정할 경우, tag 및 operation이 모두 닫힌채로 문서가 열립니다.
+  #paths-to-match: # OpenAPI 3 로 문서화할 api path 리스트
+  #  - /**
+
+api:  # Swagger UI Information
+  info:
+    title: CareMoa Review Service API
+    description: API to fetch CareMoa Review
+    version: 1.0.0
+    terms-of-service: http://caremoa.com/terms/
+    contact:
+      name: CareMoa Service API Team
+      email: supportyoo@sk.com
+      url: http://sk.com/caremoateam
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+#-------------------------------------------------------------
+# log File 설정
+#-------------------------------------------------------------
+logging:
+  level:
+    root: error # trace, debug, info, warn, error, fatal
+    "[org.springframework]": info
+    "[org.springframework.jdbc]": info
+    "[org.hibernate.type]": trace      # 파라메터값 확인을 위해서는 trace / off
+    "[com.caremoa]": debug
+
+    jdbc:
+      connection: off
+      sqlonly: off
+      sqltiming: info
+      audit: off
+      result: off
+      resultsettable: info
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+      max-file-size: 100MB
+      max-history: 30
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
+#-------------------------------------------------------------
+# Feign Client 호출 URL 정의
+#-------------------------------------------------------------
+feign:
+  client:
+    config:
+      default:
+        errorDecoder: com.caremoa.helper.exception.FeignErrorDecoder
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
 spring:
   application:
     name: caremoa_aftercare
@@ -26,10 +99,8 @@ spring:
 
 server:
   port: 8080
-
-logging:
-  level:
-    org.hibernate.SQL: debug
+  servlet:
+    contextPath: /review
 
 # Jasypt
 jasypt:
