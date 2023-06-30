@@ -96,7 +96,6 @@ spring:
       on-profile: default
       # Server
       # on-profile: docker
-
 server:
   port: 8080
   servlet:
