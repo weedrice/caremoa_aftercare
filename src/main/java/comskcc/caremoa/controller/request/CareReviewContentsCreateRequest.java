@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CareReviewContentsCreateRequest {
     private Long reviewId;
+    private Long contId;
     private String contents;
     private LikeType likeType;
 }
