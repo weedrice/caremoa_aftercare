@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "review not founded"),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error"),
+    CONTENTS_ALREADY_EXISTS(HttpStatus.CONFLICT, "review already exists"),
     ;
 
     private final HttpStatus httpStatus;

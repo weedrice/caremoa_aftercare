@@ -7,11 +7,7 @@ import comskcc.caremoa.service.CareReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/careReviews")
@@ -19,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class CareReviewController {
     private final CareReviewService careReviewService;
 
-    @GetMapping("/my")
-    public Response<Page<CareReviewResponse>> my(Long memberId, Pageable pageable) {
-        return Response.success(careReviewService.my(memberId, pageable).map(CareReviewResponse::fromCareReview));
+    @GetMapping("/{contId}")
+    public Response<CareReviewResponse> getByContId(@PathVariable Long contId) throws Exception {
+        return Response.success(CareReviewResponse.fromCareReview(careReviewService.getByContId(contId)));
     }
 
     @PostMapping

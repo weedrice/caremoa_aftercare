@@ -13,10 +13,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CareReviewContentsService {
-    
+
     private final CareReviewEntityRepository careReviewEntityRepository;
     private final CareReviewContentsRepository careReviewContentsRepository;
 
@@ -25,13 +27,13 @@ public class CareReviewContentsService {
     }
 
     @Transactional
-    public void create(Long reviewId, CareReviewContentsCreateRequest careReviewContentsCreateRequest) {
-        CareReviewContentsEntity careReviewContentsEntity = getCareReviewContentsEntityOrException(reviewId);
-        CareReviewEntity careReviewEntity = getCareReviewEntityOrException(reviewId);
+    public void create(Long contId, CareReviewContentsCreateRequest careReviewContentsCreateRequest) {
+        CareReviewEntity careReviewEntity =
+                careReviewEntityRepository.save(CareReviewEntity.of(contId, null, ReviewType.REVIEW));
 
-        careReviewContentsRepository.save(CareReviewContentsEntity.of(reviewId, careReviewContentsCreateRequest.getContents(), careReviewContentsCreateRequest.getLikeType()));
-        careReviewEntity.setReviewType(ReviewType.REVIEW);
-        careReviewEntityRepository.saveAndFlush(careReviewEntity);
+        careReviewContentsRepository.save(
+                CareReviewContentsEntity.of(careReviewEntity.getId(), careReviewContentsCreateRequest.getContents()
+                        , careReviewContentsCreateRequest.getLikeType()));
     }
 
     private CareReviewContentsEntity getCareReviewContentsEntityOrException(Long reviewId) {

@@ -24,9 +24,9 @@ public class CareReviewContentsController {
         return Response.success(CareReviewContentsResponse.fromCareReviewContents(careReviewContentsService.getByReviewId(reviewId)));
     }
 
-    @PostMapping("/{reviewId}")
-    public Response<Void> create(@PathVariable Long reviewId, @RequestBody CareReviewContentsCreateRequest careReviewContentsCreateRequest) {
-        careReviewContentsService.create(reviewId, careReviewContentsCreateRequest);
+    @PostMapping("/{contId}")
+    public Response<Void> create(@PathVariable Long contId, @RequestBody CareReviewContentsCreateRequest careReviewContentsCreateRequest) {
+        careReviewContentsService.create(contId, careReviewContentsCreateRequest);
         return Response.success();
     }
 }
