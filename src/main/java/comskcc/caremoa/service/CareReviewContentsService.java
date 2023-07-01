@@ -27,9 +27,10 @@ public class CareReviewContentsService {
     }
 
     @Transactional
-    public void create(Long contId, CareReviewContentsCreateRequest careReviewContentsCreateRequest) {
+    public void create(CareReviewContentsCreateRequest careReviewContentsCreateRequest) {
         CareReviewEntity careReviewEntity =
-                careReviewEntityRepository.save(CareReviewEntity.of(contId, null, ReviewType.REVIEW));
+                careReviewEntityRepository.save(CareReviewEntity.of(careReviewContentsCreateRequest.getReviewId()
+                        , null, ReviewType.REVIEW));
 
         careReviewContentsRepository.save(
                 CareReviewContentsEntity.of(careReviewEntity.getId(), careReviewContentsCreateRequest.getContents()
